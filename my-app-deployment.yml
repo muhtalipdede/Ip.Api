@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ip-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ip-api
+  template:
+    metadata:
+      labels:
+        app: ip-api
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+      - name: ip-api-container
+        image: docker.io/muhtalipdede/ip-api
+        ports:
+        - containerPort: 80
